@@ -18,7 +18,11 @@
 #
 def triangle(a, b, c):
     # DELETE 'PASS' AND WRITE THIS CODE
-    pass
+    # pass
+
+    cases = {3:'scalene', 2:'isosceles', 1:'equilateral'}
+    sides = set((a,b,c))
+    return cases.get(len(sides))
 
 # Error class used in part 2.  No need to change this code.
 class TriangleError(Exception):
