@@ -20,9 +20,26 @@ def triangle(a, b, c):
     # DELETE 'PASS' AND WRITE THIS CODE
     # pass
 
+    #if a*b*c <= 0:
+    #    raise TriangleError # This works, but how to use try?
+    product_check = [a,b,c]
+    for i in range(2):
+        try:
+            product_check[i+1] *= product_check[i]
+            if product_check[i+1] <= 0:
+                raise TriangleError
+        except TriangleError:
+            raise
+    if a + b < c:
+        raise TriangleError
+    elif a + c < b:
+        raise TriangleError
+    elif b + c < a:
+        raise TriangleError
+
     cases = {3:'scalene', 2:'isosceles', 1:'equilateral'}
-    sides = set((a,b,c))
-    return cases.get(len(sides))
+    unique_sides = set((a,b,c))
+    return cases.get(len(unique_sides))
 
 # Error class used in part 2.  No need to change this code.
 class TriangleError(Exception):
