@@ -16,7 +16,11 @@ class DiceSet:
     def roll(self, n):
         # Needs implementing!
         # Tip: random.randint(min, max) can be used to generate random numbers
-        pass
+        rolls = []
+        while 0 < n:
+            rolls.append(random.randint(1,6))
+            n = n-1
+        self._values = rolls
 
 class AboutDiceProject(Koan):
     def test_can_create_a_dice_set(self):
@@ -42,10 +46,10 @@ class AboutDiceProject(Koan):
     def test_dice_values_should_change_between_rolls(self):
         dice = DiceSet()
 
-        dice.roll(5)
+        dice.roll(100)
         first_time = dice.values
 
-        dice.roll(5)
+        dice.roll(100)
         second_time = dice.values
 
         self.assertNotEqual(first_time, second_time, \
@@ -56,6 +60,10 @@ class AboutDiceProject(Koan):
         # If the rolls are random, then it is possible (although not
         # likely) that two consecutive rolls are equal.  What would be a
         # better way to test this?
+
+        # MAYBE roll(5) a bunch of times and save all sets of values and display
+        # how many were similar. Then one can assess if it is likely a code
+        # error or an outlier
 
     def test_you_can_roll_different_numbers_of_dice(self):
         dice = DiceSet()
